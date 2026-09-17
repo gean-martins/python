@@ -1,5 +1,5 @@
 #realiza o cálculo de bhaskara e exibe quais são as raízes da função
-#caso o delta seja negativo, o tipo de x1 e de x2
+#caso o delta seja negativo, o tipo de x1 e de x2 serão "complex"
 
 #A, B e C de uma função, as raízes deve ser 1 e -0.5
 a = 8
