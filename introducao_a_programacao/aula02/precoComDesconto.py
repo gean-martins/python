@@ -1,11 +1,9 @@
-#recebe o preço de um produto, e mostra o preço com 10% de desconto
+#recebe o preço de um produto, e mostra o preço com o desconto
 
 precoAntigo = float(input("Digite o preço do produto: "))
-descontoAaplicar = float(input("Digite o desconto a ser aplicado no produto: "))
+taxaDeDesconto = float(input("Digite o desconto em porcentagem a ser aplicado no produto: "))
 
-descontoNoProduto = precoAntigo * descontoAaplicar / 100
+precoNovo = precoAntigo - taxaDeDesconto/100*precoAntigo
 
-precoNovo = precoAntigo - descontoNoProduto
-
-print(f"Preço sem desconto de 10%: {precoAntigo}")
-print(f"Preco com desconto de 10%: {precoNovo}")
+print(f"Preço SEM desconto: {precoAntigo}")
+print(f"Preco COM desconto: {precoNovo}")
