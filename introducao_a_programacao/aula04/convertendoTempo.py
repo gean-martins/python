@@ -1,5 +1,10 @@
-def converteTempo(segundosTotais):
-    minutos = segundos // 60
-    segundosRestantes = segundos - segundos % 60
-    horas = minutos // 60
-    segundosRestantes = segundosRestantes - hora * 
+def converteTempo(tempoTotal):
+    horas = tempoTotal // 3600
+    TempoRestante = tempoTotal % 3600
+    minutos = TempoRestante // 60
+    segundos = TempoRestante % 60
+
+    print(f"{tempoTotal}seg é igual a {horas}h, {minutos}min e {segundos}seg.")
+
+tempoTotal = int(input("Digite quantos segundos você quer converter: "))
+converteTempo(tempoTotal)
