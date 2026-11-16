@@ -14,6 +14,7 @@ MAX_RAND = 15
 senha = []
 tamanhoSenha = random.randint(MIN_RAND, MAX_RAND)
 insertMaiusculas = False
+insertNumeros = False
 invalidOption = True
 
 print("----------------------------------------------")
@@ -21,33 +22,55 @@ print("Bem vindo(a) ao gerador de senhas")
 print("Você quer uma senha com letras MAIUSCULAS?")
 print("[s/n] - Sim ou Não?") 
 
-#validador
+#validador para mauisculas
 while(invalidOption): 
-    optInsertMaiusculas = input("Escolha uma opção: ")
+    opt = input("Escolha uma opção: ")
 
-    if(optInsertMaiusculas == 'S' or optInsertMaiusculas == 's'):
+    if(opt == 'S' or opt == 's'):
         insertMaiusculas = True
         invalidOption = False
-    elif(optInsertMaiusculas == 'N' or optInsertMaiusculas == 'n'):
+    elif(opt == 'N' or opt == 'n'):
+        invalidOption = False
+    else:
+        invalidOption = True
+        print("Opção inválida, tente novamente...")
+
+print("----")
+print("Você quer uma senha com números?")
+print("[s/n] - Sim ou Não?") 
+
+#validador para numeros
+invalidOption = True
+while(invalidOption):
+    opt = input("Escolha uma opção: ")
+    
+    if(opt == 'S' or opt == 's'):
+        insertNumeros = True
+        invalidOption = False
+    elif(opt == 'N' or opt == 'n'):
         invalidOption = False
     else:
         invalidOption = True
         print("Opção inválida, tente novamente...")
 
 #cria a senha
-if(insertMaiusculas):
-    for i in range(tamanhoSenha):
+for i in range(tamanhoSenha):
+    #para inserir letras
+    if(insertMaiusculas):
         moeda = random.randint(0, 1)
         if(moeda == 1):
-            senha.append(chr(random.randint(ord("A"), ord("Z"))))
+            senha.append(chr(random.randint(ord('A'), ord('Z'))))
         else:
-            senha.append(chr(random.randint(ord("a"), ord("z"))))
+            senha.append(chr(random.randint(ord('a'), ord('z'))))
+    else:
+        senha.append(chr(random.randint(ord('a'), ord('z'))))
 
-else:
-    for i in range(tamanhoSenha):
-        senha.append(chr(random.randint(ord("a"), ord("z"))))
-
+    #para inserir números
+    if(insertNumeros):
+        senha.append(str(random.randint(0, 9)))
+    
 #exibe a senha
+print("----")
 print(f"Senha gerada: {"".join(senha)}")
 
 print("----------------------------------------------")
