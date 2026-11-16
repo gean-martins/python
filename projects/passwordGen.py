@@ -8,9 +8,15 @@
 
 import random
 
+MIN_ASCII_SIMBOL = 33
+MAX_ASCII_SIMBOL = 47
+
+MAX_CHAR_OPT = 3
+
 senha = []
 insertMaiusculas = False
 insertNumeros = False
+insertSimbolos = False
 invalidOption = True
 
 print("----------------------------------------------")
@@ -52,27 +58,56 @@ while(invalidOption):
         invalidOption = True
         print("Opção inválida, tente novamente...")
 
+print("----")
+print("Você quer uma senha com símbolos?")
+print("[s/n] - Sim ou Não?") 
+
+#validador para símbolos
+invalidOption = True
+while(invalidOption):
+    opt = input("Escolha uma opção: ")
+    
+    if(opt == 'S' or opt == 's'):
+        insertSimbolos = True
+        invalidOption = False
+    elif(opt == 'N' or opt == 'n'):
+        invalidOption = False
+    else:
+        invalidOption = True
+        print("Opção inválida, tente novamente...")
+
 #cria a senha
+i = 0
 for i in range(tamanhoSenha):
     
-    nextChar = random.randint(1, 2)
+    nextChar = random.randint(1, MAX_CHAR_OPT)
+    insertMinuscula = False
 
     match nextChar:
         #para inserir letras
         case 1:
             if(insertMaiusculas):
-                moeda = random.randint(0, 1)
-                if(moeda == 1):
-                    senha.append(chr(random.randint(ord('A'), ord('Z'))))
-                else:
-                    senha.append(chr(random.randint(ord('a'), ord('z'))))
+                senha.append(chr(random.randint(ord('A'), ord('Z'))))
             else:
-                senha.append(chr(random.randint(ord('a'), ord('z'))))
+                insertMinuscula = True
+
         case 2:
             #para inserir números
             if(insertNumeros):
                 senha.append(str(random.randint(0, 9)))
+            else: 
+                insertMinuscula = True
+
+        case 3:
+            #para inserir símbolos
+            if(insertSimbolos):
+                senha.append(chr(random.randint(MIN_ASCII_SIMBOL, MAX_ASCII_SIMBOL)))
+            else:
+                insertMinuscula = True
     
+    #insere uma letra minúscula de qualquer forma
+    if(insertMinuscula):
+        senha.append(chr(random.randint(ord('a'), ord('z'))))
 
 #exibe a senha
 print("----")
