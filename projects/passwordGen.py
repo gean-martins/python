@@ -8,17 +8,16 @@
 
 import random
 
-MIN_RAND = 5
-MAX_RAND = 15
-
 senha = []
-tamanhoSenha = random.randint(MIN_RAND, MAX_RAND)
 insertMaiusculas = False
 insertNumeros = False
 invalidOption = True
 
 print("----------------------------------------------")
 print("Bem vindo(a) ao gerador de senhas")
+tamanhoSenha = int(input("Digite o tamanho da sua senha: "))
+
+print("----")
 print("Você quer uma senha com letras MAIUSCULAS?")
 print("[s/n] - Sim ou Não?") 
 
@@ -55,20 +54,26 @@ while(invalidOption):
 
 #cria a senha
 for i in range(tamanhoSenha):
-    #para inserir letras
-    if(insertMaiusculas):
-        moeda = random.randint(0, 1)
-        if(moeda == 1):
-            senha.append(chr(random.randint(ord('A'), ord('Z'))))
-        else:
-            senha.append(chr(random.randint(ord('a'), ord('z'))))
-    else:
-        senha.append(chr(random.randint(ord('a'), ord('z'))))
-
-    #para inserir números
-    if(insertNumeros):
-        senha.append(str(random.randint(0, 9)))
     
+    nextChar = random.randint(1, 2)
+
+    match nextChar:
+        #para inserir letras
+        case 1:
+            if(insertMaiusculas):
+                moeda = random.randint(0, 1)
+                if(moeda == 1):
+                    senha.append(chr(random.randint(ord('A'), ord('Z'))))
+                else:
+                    senha.append(chr(random.randint(ord('a'), ord('z'))))
+            else:
+                senha.append(chr(random.randint(ord('a'), ord('z'))))
+        case 2:
+            #para inserir números
+            if(insertNumeros):
+                senha.append(str(random.randint(0, 9)))
+    
+
 #exibe a senha
 print("----")
 print(f"Senha gerada: {"".join(senha)}")
