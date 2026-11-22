@@ -3,7 +3,7 @@
 repetidos, nulos (zeros) ou negativos.
 '''
 
-TAM_VET = 5 #por enquanto...
+TAM_VET = 34
 
 F = []
 compact = []
